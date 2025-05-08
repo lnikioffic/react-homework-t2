@@ -1,15 +1,22 @@
+import { useRef, useEffect } from "react";
 import "../App.css";
 
-function Greeting(props) {
+function Greeting({ name }) {
+  const prevName = useRef(name);
 
-  const hasNameChanged = props.prevName === props.name;
+  // обновление
+  useEffect(() => {
+    prevName.current = name;
+  }, [name]);
+
+  const isNewName = prevName.current === name;
 
   return (
     <div className="read-the-docs">
-      {hasNameChanged ? (
-        <h3>Привет, {props.name}!</h3>
+      {isNewName ? (
+        <h3>Привет, {name}!</h3>
       ) : (
-        <h3>Привет, у тебя поменялось имя, теперь ты {props.name}!</h3>
+        <h3>Привет, у тебя поменялось имя, теперь ты {name}!</h3>
       )}
     </div>
   );

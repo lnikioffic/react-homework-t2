@@ -22,11 +22,9 @@ const getRandomName = () => {
 
 const Conteiner = () => {
   const [name, setName] = useState(getRandomName());
-  const [prevName, setPrevName] = useState(name);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setPrevName(name);
       setName(getRandomName());
     }, 10000);
 
@@ -36,7 +34,7 @@ const Conteiner = () => {
   return (
     <>
       <Header />
-      <Greeting name={name} prevName={prevName} />
+      <Greeting name={name} />
       <Clock />
     </>
   );
